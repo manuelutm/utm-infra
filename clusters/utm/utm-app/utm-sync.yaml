@@ -9,7 +9,7 @@ spec:
   ref:
     branch: master
   secretRef:
-    name: flux-system
+    name: utm-app-secret
   url: ssh://git@github.com/manuelutm/utm-deploy
 ---
 apiVersion: kustomize.toolkit.fluxcd.io/v1beta1
