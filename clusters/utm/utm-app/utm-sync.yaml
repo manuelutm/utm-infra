@@ -1,0 +1,27 @@
+---
+apiVersion: source.toolkit.fluxcd.io/v1beta1
+kind: GitRepository
+metadata:
+  name: utm-app
+  namespace: flux-system
+spec:
+  interval: 1m0s
+  ref:
+    branch: master
+  secretRef:
+    name: flux-system
+  url: ssh://git@github.com/manuelutm/utm-deploy
+---
+apiVersion: kustomize.toolkit.fluxcd.io/v1beta1
+kind: Kustomization
+metadata:
+  name: utm-app
+  namespace: flux-system
+spec:
+  interval: 10m0s
+  path: ./apps/
+  prune: true
+  sourceRef:
+    kind: GitRepository
+    name: utm-app
+  validation: client
